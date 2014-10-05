@@ -1,4 +1,4 @@
 camel-scr
 =========
 
-A Camel runner for SCR (OSGi)
+Camel runner for SCR (OSGi)
