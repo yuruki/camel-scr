@@ -5,9 +5,10 @@ import org.apache.camel.RoutesBuilder;
 import org.apache.camel.component.properties.PropertiesComponent;
 import org.apache.camel.core.osgi.OsgiDefaultCamelContext;
 import org.apache.camel.core.osgi.utils.BundleDelegatingClassLoader;
-import org.apache.camel.impl.*;
+import org.apache.camel.impl.DefaultCamelContext;
+import org.apache.camel.impl.ExplicitCamelContextNameStrategy;
+import org.apache.camel.impl.SimpleRegistry;
 import org.apache.camel.spi.ComponentResolver;
-import org.apache.camel.spi.Registry;
 import org.apache.camel.util.ReflectionHelper;
 import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
@@ -20,7 +21,6 @@ import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.URL;
 import java.util.*;
-import java.util.Properties;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -244,33 +244,6 @@ public abstract class AbstractCamelRunner implements Runnable {
             }
         } else {
             return null;
-        }
-    }
-
-    @SuppressWarnings("unused")
-    public static <T extends Registry> void addToRegistry(final T registry, final String name, final Object bean) {
-        Registry reg = registry;
-
-        // Unwrap PropertyPlaceholderDelegateRegistry
-        if (registry instanceof PropertyPlaceholderDelegateRegistry) {
-            reg = ((PropertyPlaceholderDelegateRegistry) reg).getRegistry();
-        }
-
-        if (reg instanceof CompositeRegistry) {
-            // getRegistryList() not available in Camel 2.12
-            SimpleRegistry r = new SimpleRegistry();
-            r.put(name, bean);
-            ((CompositeRegistry) reg).addRegistry(r);
-        } else if (reg instanceof JndiRegistry) {
-            ((JndiRegistry) reg).bind(name, bean);
-        } else if (reg instanceof SimpleRegistry) {
-            ((SimpleRegistry) reg).put(name, bean);
-        } else {
-            throw new IllegalArgumentException("Couldn't add bean. Unknown registry type: " + reg.getClass());
-        }
-
-        if (registry.lookupByName(name) != bean) {
-            throw new IllegalArgumentException("Couldn't add bean. Bean not found from the registry.");
         }
     }
 }

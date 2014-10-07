@@ -1,5 +1,10 @@
 package com.github.yuruki.camel.scr;
 
+import org.apache.camel.impl.CompositeRegistry;
+import org.apache.camel.impl.JndiRegistry;
+import org.apache.camel.impl.PropertyPlaceholderDelegateRegistry;
+import org.apache.camel.impl.SimpleRegistry;
+import org.apache.camel.spi.Registry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
@@ -20,9 +25,9 @@ import java.util.Iterator;
 import java.util.Map;
 
 @SuppressWarnings("unused")
-public class ScrTestSupport {
+public class ScrHelper {
 
-    private static Logger log = LoggerFactory.getLogger(ScrTestSupport.class);
+    private static Logger log = LoggerFactory.getLogger(ScrHelper.class);
 
     public static Map<String, String> getScrProperties(String componentName) throws Exception {
         return getScrProperties(String.format("target/classes/OSGI-INF/%s.xml", componentName), componentName);
@@ -76,5 +81,31 @@ public class ScrTestSupport {
         builderFactory.setNamespaceAware(true);
         DocumentBuilder builder = builderFactory.newDocumentBuilder();
         return builder.parse(xml);
+    }
+
+    public static <T extends Registry> void addToRegistry(final T registry, final String name, final Object bean) {
+        Registry reg = registry;
+
+        // Unwrap PropertyPlaceholderDelegateRegistry
+        if (registry instanceof PropertyPlaceholderDelegateRegistry) {
+            reg = ((PropertyPlaceholderDelegateRegistry) reg).getRegistry();
+        }
+
+        if (reg instanceof CompositeRegistry) {
+            // getRegistryList() not available in Camel 2.12
+            SimpleRegistry r = new SimpleRegistry();
+            r.put(name, bean);
+            ((CompositeRegistry) reg).addRegistry(r);
+        } else if (reg instanceof JndiRegistry) {
+            ((JndiRegistry) reg).bind(name, bean);
+        } else if (reg instanceof SimpleRegistry) {
+            ((SimpleRegistry) reg).put(name, bean);
+        } else {
+            throw new IllegalArgumentException("Couldn't add bean. Unknown registry type: " + reg.getClass());
+        }
+
+        if (registry.lookupByName(name) != bean) {
+            throw new IllegalArgumentException("Couldn't add bean. Bean not found from the registry.");
+        }
     }
 }
