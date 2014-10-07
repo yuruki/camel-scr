@@ -216,7 +216,7 @@ public abstract class AbstractCamelRunner implements Runnable {
                     log.debug("Set field " + field.getName() + " with value " + propertyValue);
                 }
             } catch (Exception e) {
-                log.debug("Field " + field.getName() + " skipped", e);
+                log.debug("Field " + field.getName() + " skipped: " + e.getMessage());
             }
         }
         return target;
