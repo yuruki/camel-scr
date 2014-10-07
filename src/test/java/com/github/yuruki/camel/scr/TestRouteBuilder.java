@@ -21,8 +21,6 @@ public class TestRouteBuilder extends RouteBuilder {
     public void configure() throws Exception {
         checkProperties();
 
-        AbstractCamelRunner.addToRegistry(getContext().getRegistry(), "test", "bean");
-
         errorHandler(defaultErrorHandler()
                 .maximumRedeliveries(maximumRedeliveries)
                 .redeliveryDelay(redeliveryDelay)
