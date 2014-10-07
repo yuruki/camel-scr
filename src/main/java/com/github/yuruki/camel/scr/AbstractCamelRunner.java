@@ -38,7 +38,7 @@ public abstract class AbstractCamelRunner implements Runnable {
     private boolean started = false;
 
     public static final int START_DELAY = 5000;
-    public static final String PROPERTY_PREFIX = "camel.properties.prefix";
+    public static final String PROPERTY_PREFIX = "camel.scr.properties.prefix";
 
     // Configured fields
     public String camelContextId = "camel-runner-default";
@@ -50,12 +50,12 @@ public abstract class AbstractCamelRunner implements Runnable {
 
         activated = true;
 
-        doActivate(bundleContext, props);
+        prepare(bundleContext, props);
 
         runWithDelay(this);
     }
 
-    protected void doActivate(final BundleContext bundleContext, final Map<String, String> props) throws Exception {
+    public void prepare(final BundleContext bundleContext, final Map<String, String> props) throws Exception {
         createCamelContext(bundleContext, props);
 
         // Configure fields from properties
@@ -151,7 +151,11 @@ public abstract class AbstractCamelRunner implements Runnable {
     }
 
     protected void doDeactivate() {
-        // nop
+        stop();
+    }
+
+    public void stop() {
+        stopCamelContext();
     }
 
     protected synchronized void startCamelContext() {
@@ -178,6 +182,11 @@ public abstract class AbstractCamelRunner implements Runnable {
             // Even if stopping failed we consider Camel context stopped
             started = false;
         }
+    }
+
+    @SuppressWarnings("unused")
+    public CamelContext getContext() {
+        return context;
     }
 
     @SuppressWarnings("unused")

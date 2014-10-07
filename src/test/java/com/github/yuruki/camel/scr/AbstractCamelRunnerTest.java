@@ -13,7 +13,7 @@ import static org.junit.Assert.fail;
 public class AbstractCamelRunnerTest {
 
     @Test
-    public void testStartSuccess() {
+    public void testActivateDeactivate() {
         ConcreteCamelRunner integration = new ConcreteCamelRunner();
         try {
             integration.activate(null, integration.getDefaultProperties());
@@ -29,7 +29,26 @@ public class AbstractCamelRunnerTest {
     }
 
     @Test
-    public void testDelayedStartSuccess() {
+    public void testPrepareRunStop() {
+        ConcreteCamelRunner integration = new ConcreteCamelRunner();
+        try {
+            integration.prepare(null, integration.getDefaultProperties());
+            integration.run();
+            do {
+                Thread.sleep(500);
+            } while (integration.getContext().isStartingRoutes());
+            integration.stop();
+            assertTrue("Camel context has not started.", integration.camelContextStarted == 1);
+            assertTrue("Camel context has not stopped.", integration.camelContextStopped == 1);
+            assertTrue("Not enough routes added.", integration.routeAdded == 2);
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail();
+        }
+    }
+
+    @Test
+    public void testDelayedStart() {
         ConcreteCamelRunner integration = new ConcreteCamelRunner();
         try {
             integration.activate(null, integration.getDefaultProperties());
@@ -49,7 +68,7 @@ public class AbstractCamelRunnerTest {
     }
 
     @Test
-    public void testStartCancel() {
+    public void testDelayedStartCancel() {
         ConcreteCamelRunner integration = new ConcreteCamelRunner();
 
         Map<String, String> properties = integration.getDefaultProperties();
