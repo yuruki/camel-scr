@@ -17,7 +17,7 @@ public class AbstractCamelRunnerTest {
         ConcreteCamelRunner integration = new ConcreteCamelRunner();
         try {
             integration.activate(null, integration.getDefaultProperties());
-            Thread.sleep(ConcreteCamelRunner.START_DELAY * 1000 + 1000);
+            Thread.sleep(ConcreteCamelRunner.START_DELAY + 1000);
             integration.deactivate();
             assertTrue("Camel context has not started.", integration.camelContextStarted == 1);
             assertTrue("Camel context has not stopped.", integration.camelContextStopped == 1);
@@ -29,7 +29,27 @@ public class AbstractCamelRunnerTest {
     }
 
     @Test
-    public void testStartFailure() {
+    public void testDelayedStartSuccess() {
+        ConcreteCamelRunner integration = new ConcreteCamelRunner();
+        try {
+            integration.activate(null, integration.getDefaultProperties());
+            Thread.sleep(2000);
+            integration.gotCamelComponent(null);
+            Thread.sleep(ConcreteCamelRunner.START_DELAY - 1000);
+            assertTrue("Camel context has started too early", integration.camelContextStarted == 0);
+            Thread.sleep(2000);
+            assertTrue("Camel context has not started.", integration.camelContextStarted == 1);
+            integration.deactivate();
+            assertTrue("Camel context has not stopped.", integration.camelContextStopped == 1);
+            assertTrue("Not enough routes added.", integration.routeAdded == 2);
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail();
+        }
+    }
+
+    @Test
+    public void testStartCancel() {
         ConcreteCamelRunner integration = new ConcreteCamelRunner();
 
         Map<String, String> properties = integration.getDefaultProperties();
@@ -38,7 +58,7 @@ public class AbstractCamelRunnerTest {
 
         try {
             integration.activate(null, properties);
-            Thread.sleep(ConcreteCamelRunner.START_DELAY * 1000 - 1000);
+            Thread.sleep(ConcreteCamelRunner.START_DELAY - 1000);
             integration.deactivate();
             assertTrue("Routes have been added.", integration.routeAdded == 0);
         } catch (Exception e) {

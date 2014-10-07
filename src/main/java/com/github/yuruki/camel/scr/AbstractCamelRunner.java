@@ -37,7 +37,7 @@ public abstract class AbstractCamelRunner implements Runnable {
     private boolean activated = false;
     private boolean started = false;
 
-    public static final int START_DELAY = 5;
+    public static final int START_DELAY = 5000;
     public static final String PROPERTY_PREFIX = "camel.properties.prefix";
 
     // Configured fields
@@ -122,7 +122,7 @@ public abstract class AbstractCamelRunner implements Runnable {
         if (activated && !started) {
             cancelDelayedRun();
             // Run after a delay
-            starter = executor.schedule(runnable, START_DELAY, TimeUnit.SECONDS);
+            starter = executor.schedule(runnable, START_DELAY, TimeUnit.MILLISECONDS);
         }
     }
 
