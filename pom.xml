@@ -45,6 +45,22 @@
 		</snapshotRepository>
 	</distributionManagement>
 
+    <repositories>
+        <repository>
+            <id>fusesource.m2</id>
+            <name>JBoss FS Public Repository Group</name>
+            <url>https://repo.fusesource.com/nexus/content/groups/public</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.camel</groupId>

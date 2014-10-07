@@ -56,7 +56,7 @@ public abstract class AbstractCamelRunner implements Runnable {
         runWithDelay(this);
     }
 
-    public void prepare(final BundleContext bundleContext, final Map<String, String> props) throws Exception {
+    public synchronized void prepare(final BundleContext bundleContext, final Map<String, String> props) throws Exception {
         createCamelContext(bundleContext, props);
 
         // Configure fields from properties
@@ -120,7 +120,7 @@ public abstract class AbstractCamelRunner implements Runnable {
     protected abstract List<RoutesBuilder> getRouteBuilders();
 
     // Run after a delay unless the method is called again
-    private synchronized void runWithDelay(final Runnable runnable) {
+    private void runWithDelay(final Runnable runnable) {
         if (activated && !started) {
             cancelDelayedRun();
             // Run after a delay
@@ -156,11 +156,11 @@ public abstract class AbstractCamelRunner implements Runnable {
         stop();
     }
 
-    public void stop() {
+    public synchronized void stop() {
         stopCamelContext();
     }
 
-    protected synchronized void startCamelContext() {
+    private void startCamelContext() {
         if (started) return;
         try {
             if (active) {
@@ -174,7 +174,7 @@ public abstract class AbstractCamelRunner implements Runnable {
         }
     }
 
-    protected synchronized void stopCamelContext() {
+    private void stopCamelContext() {
         if (!started) return;
         try {
             context.stop();
