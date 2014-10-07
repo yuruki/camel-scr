@@ -28,6 +28,8 @@
 		<log4j-version>1.2.16</log4j-version>
         <felix-framework-version>4.0.3.redhat-610379</felix-framework-version>
         <felix-scr-annotations-version>1.9.6</felix-scr-annotations-version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
 	<distributionManagement>

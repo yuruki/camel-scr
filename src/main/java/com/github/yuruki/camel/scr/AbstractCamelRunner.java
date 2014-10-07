@@ -8,6 +8,7 @@ import org.apache.camel.core.osgi.utils.BundleDelegatingClassLoader;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.impl.ExplicitCamelContextNameStrategy;
 import org.apache.camel.impl.SimpleRegistry;
+import org.apache.camel.model.ModelCamelContext;
 import org.apache.camel.spi.ComponentResolver;
 import org.apache.camel.util.ReflectionHelper;
 import org.osgi.framework.BundleContext;
@@ -29,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 public abstract class AbstractCamelRunner implements Runnable {
 
     protected Logger log = LoggerFactory.getLogger(getClass());
-    protected CamelContext context;
+    protected ModelCamelContext context;
     protected SimpleRegistry registry = new SimpleRegistry();
 
     private ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
@@ -61,7 +62,7 @@ public abstract class AbstractCamelRunner implements Runnable {
         // Configure fields from properties
         configure(context, this, log);
 
-        setupCamelContext(this.camelContextId);
+        setupCamelContext(bundleContext, camelContextId);
     }
 
     protected void createCamelContext(final BundleContext bundleContext, final Map<String, String> props) {
@@ -78,7 +79,8 @@ public abstract class AbstractCamelRunner implements Runnable {
         setupPropertiesComponent(context, props, log);
     }
 
-    protected void setupCamelContext(final String camelContextId) throws Exception {
+    @SuppressWarnings("unused")
+    protected void setupCamelContext(final BundleContext bundleContext, final String camelContextId) throws Exception {
         // Setup
         context.setNameStrategy(new ExplicitCamelContextNameStrategy(camelContextId));
         context.setUseMDCLogging(true);
@@ -185,7 +187,7 @@ public abstract class AbstractCamelRunner implements Runnable {
     }
 
     @SuppressWarnings("unused")
-    public CamelContext getContext() {
+    public ModelCamelContext getContext() {
         return context;
     }
 
