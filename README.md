@@ -15,7 +15,7 @@ AbstractCamelRunner ties CamelContext's lifecycle to SCR and handles configurati
 })
 ```
 
-and provide the default configuration on class level as well:
+Then implement getRouteBuilders() which returns the routes you want to run. And finally provide the default configuration on class level as well:
 
 ```
 @Properties({
@@ -25,6 +25,8 @@ and provide the default configuration on class level as well:
   ...
 })
 ```
+
+That's all.
 
 Properties camelContextId and active control the CamelContext's name (defaults to "camel-runner-default") and whether it will be started or not (defaults to "false"), respectively. In addition to these you can add and use as many properties as you like. PropertiesComponent handled recursive properties and prefixing with fallback with no problem (see camel-archetype-scr generated example for more).
 
