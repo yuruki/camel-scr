@@ -5,7 +5,7 @@ Camel runner for SCR (OSGi Declarative Services)
 
 Running Camel in an SCR bundle is a great alternative for the more common methods (Spring DM and Blueprint). Using Camel runner for SCR your bundle can remain completely in Java world; there is no need to create or modify any XML or properties files. This offers us full control over everything and also means that your IDE knows exactly what is going on in your project.
 
-*AbstractCamelRunner* ties CamelContext's lifecycle to Service Component's lifecycle and handles configuration with Camel's PropertiesComponent. All you have to do is to extends your Service Component class from *AbstractCamelRunner* and set the following references on class level:
+*AbstractCamelRunner* ties CamelContext's lifecycle to Service Component's lifecycle and handles configuration with Camel's PropertiesComponent. All you have to do is extend your Service Component class from *AbstractCamelRunner* and set the following references on class level:
 
 ```
 @References({
@@ -15,7 +15,7 @@ Running Camel in an SCR bundle is a great alternative for the more common method
 })
 ```
 
-Then implement *getRouteBuilders()* which returns the routes you want to run. And finally provide the default configuration on class level as well:
+Then implement *getRouteBuilders()* which should return the Camel routes you want to run. And finally provide the default configuration with:
 
 ```
 @Properties({
