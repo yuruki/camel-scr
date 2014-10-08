@@ -9,7 +9,9 @@ AbstractCamelRunner ties CamelContext's lifecycle to SCR and handles configurati
 
 ```
 @References({
-  @Reference(...coming soon)
+        @Reference(name = "camelComponent",referenceInterface = ComponentResolver.class,
+                cardinality = ReferenceCardinality.MANDATORY_MULTIPLE, policy = ReferencePolicy.DYNAMIC,
+                policyOption = ReferencePolicyOption.GREEDY, bind = "gotCamelComponent", unbind = "lostCamelComponent")
 })
 ```
 
@@ -17,11 +19,14 @@ and provide the default configuration on class level as well:
 
 ```
 @Properties({
+  @Property(name = "camelContextId", value = "my-test"),
+  @Property(name = "active", value = "true"),
   @Property(name = "...", value = "..."),
-  @Property(...),
   ...
 })
 ```
+
+Properties camelContextId and active control the CamelContext's name (defaults to "camel-runner-default") and whether it will be started or not (defaults to "false"), respectively. In addition to these you can add and use as many properties as you like. PropertiesComponent handled recursive properties and prefixing with fallback with no problem (see camel-archetype-scr generated example for more).
 
 AbstractCamelRunner will make these properties available to your RouteBuilders through Camel's PropertiesComponent AND it will also inject these values into your Service Component class' and RouteBuilder's fields when their names match. The fields can be declared with any visibility level, and many types are supported (String, int, boolean, URL, ...).
 
