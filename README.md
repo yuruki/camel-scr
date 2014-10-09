@@ -43,4 +43,6 @@ AbstractCamelRunner lifecycle in SCR:
 
 In unit tests we don't generally use *activate()* -> *deactivate()*, but *prepare()* -> *run()* -> *stop()* for a more fine-grained control. Also, this allows us to avoid possible SCR specific operations in tests.
 
-camel-archetype-scr coming soon...
+### Examples
+
+Camel SCR bundles can be generated with https://github.com/yuruki/camel-archetype-scr.
