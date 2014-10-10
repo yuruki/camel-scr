@@ -53,7 +53,7 @@ public class ${className}Test {
         context = integration.getContext();
 
         // Fake a component for test
-        // integration.getContext().addComponent("amq", new MockComponent());
+        // context.addComponent("amq", new MockComponent());
     }
 
     @After
