@@ -4,7 +4,7 @@
 
     <groupId>com.github.yuruki.camel.scr</groupId>
     <artifactId>camel-scr</artifactId>
-    <version>1.1.4</version>
+    <version>1.1.5-SNAPSHOT</version>
     <modules>
         <module>camel-archetype-scr</module>
         <module>camel-scr-runner</module>
@@ -18,7 +18,7 @@
 	<scm>
 		<connection>${my.scm.url}/${project.artifactId}.git</connection>
 		<developerConnection>${my.scm.url}/${project.artifactId}.git</developerConnection>
-		<tag>camel-scr-1.1.4</tag>
+		<tag>HEAD</tag>
 	</scm>
 
     <prerequisites>
