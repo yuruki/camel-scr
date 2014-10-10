@@ -13,7 +13,11 @@ import org.apache.camel.model.RouteDefinition;
 import org.apache.commons.io.IOUtils;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
@@ -26,11 +30,20 @@ import static org.hamcrest.Matchers.*;
 @RunWith(JUnit4.class)
 public class ${className}Test {
 
+    Logger log = LoggerFactory.getLogger(getClass());
+
+    @Rule
+    public TestName testName = new TestName();
+
     ${className} integration;
     ModelCamelContext context;
 
     @Before
     public void setUp() throws Exception {
+        log.info("*******************************************************************");
+        log.info("Test: " + testName.getMethodName());
+        log.info("*******************************************************************");
+
         // Set property prefix for unit testing
         System.setProperty(${className}.PROPERTY_PREFIX, "unit");
 
@@ -49,7 +62,7 @@ public class ${className}Test {
     }
 
 	@Test
-	public void testRoute() throws Exception {
+	public void testRoutes() throws Exception {
         // Adjust routes
         List<RouteDefinition> routes = context.getRouteDefinitions();
 

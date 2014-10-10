@@ -1,8 +1,13 @@
 package com.github.yuruki.camel.scr;
 
+import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
@@ -11,6 +16,18 @@ import static org.junit.Assert.fail;
 
 @RunWith(JUnit4.class)
 public class AbstractCamelRunnerTest {
+
+    Logger log = LoggerFactory.getLogger(getClass());
+
+    @Rule
+    public TestName testName = new TestName();
+
+    @Before
+    public void setUp() throws Exception {
+        log.info("*******************************************************************");
+        log.info("Test: " + testName.getMethodName());
+        log.info("*******************************************************************");
+    }
 
     @Test
     public void testActivateDeactivate() {
