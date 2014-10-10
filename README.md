@@ -1,7 +1,7 @@
 camel-scr
 =========
 
-The Service Component Runtime (SCR) utils for Camel
+Service Component Runtime (SCR) utils for Camel
 
 This project consists of:
 * [Camel SCR runner](camel-scr-runner), a base class for SCR lifecycle and configuration management.
