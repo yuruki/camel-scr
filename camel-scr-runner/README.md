@@ -1,5 +1,5 @@
-camel-scr
-=========
+camel-scr-runner
+================
 
 Camel runner for SCR (OSGi Declarative Services)
 
