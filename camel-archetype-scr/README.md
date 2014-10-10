@@ -5,7 +5,7 @@ Maven archetype for creating Camel SCR (OSGi Declarative Services) bundles
 
 This archetype can be used to create ready-to-run Camel SCR bundle projects. As usual, dependency versions have to be matched to the framework where you want to run the bundle. The defaults work in Red Hat JBoss Fuse 6.1.
 
-### Generating a project
+### Generate a project
 
 First you have to install camel-scr-runner and camel-archetype-scr:
 
@@ -116,7 +116,7 @@ Let's generate a project:
     [INFO] Final Memory: 14M/240M
     [INFO] ------------------------------------------------------------------------
 
-Build and install the bundle:
+### Build and install the bundle
 
     your_git_repositories
     $ cd camel-scr-example
@@ -229,7 +229,7 @@ Build and install the bundle:
 
 That's it. Your Camel SCR bundle is ready.
 
-The example can now be deployed in JBoss Fuse.
+### Deploy the bundle in Red Hat JBoss Fuse 6.1
 
     JBossFuse:karaf@root> profile-edit --bundles mvn:example/camel-scr-example/1.0-SNAPSHOT my-test 1.0
     Adding bundle:mvn:example/camel-scr-example/1.0-SNAPSHOT to profile:my-test version:1.0
