@@ -37,8 +37,8 @@ Properties *camelContextId* and *active* control the CamelContext's name (defaul
 
 AbstractCamelRunner lifecycle in SCR:
 
-1. When component's configuration policy and mandatory references are satisfied SCR calls activate(). This creates and sets up a CamelContext through the following call chain: *activate()* -> *prepare()* -> *createCamelContext()* -> *setupPropertiesComponent()* -> *configure()* -> *setupCamelContext()*. Finally, the context is scheduled to start after *START_DELAY* with *runWithDelay()*.
-2. When Camel components (actually ComponentResolvers) are registered SCR calls *gotCamelComponent()* which reschedules the CamelContext start to happen after *START_DELAY*. This causes the CamelContext to wait until all Camel components are loaded or there is a sufficient gap between them. The same logic will reschedule a failed-to-start CamelContext whenever we add more (hopefully the missing ones) Camel components.
+1. When component's configuration policy and mandatory references are satisfied SCR calls activate(). This creates and sets up a CamelContext through the following call chain: *activate()* -> *prepare()* -> *createCamelContext()* -> *setupPropertiesComponent()* -> *configure()* -> *setupCamelContext()*. Finally, the context is scheduled to start after *AbstractCamelRunner.START_DELAY* with *runWithDelay()*.
+2. When Camel components (actually ComponentResolvers) are registered SCR calls *gotCamelComponent()* which reschedules the CamelContext start to happen after *AbstractCamelRunner.START_DELAY*. This causes the CamelContext to wait until all Camel components are loaded or there is a sufficient gap between them. The same logic will reschedule a failed-to-start CamelContext whenever we add more (hopefully the missing ones) Camel components.
 3. When Camel components are unregistered SCR calls *lostCamelComponent()*. This is a no-op.
 4. When one of the requirements that caused the *activate()* to be called is lost SCR will call *deactivate()*. This will shutdown the CamelContext.
 
