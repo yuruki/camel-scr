@@ -12,17 +12,14 @@
         <requiredProperty key="groupId"/>
         <requiredProperty key="archetypeVersion"/>
         <requiredProperty key="className"/>
-        <requiredProperty key="camel-version">
-            <defaultValue>${camel-version}</defaultValue>
-        </requiredProperty>
         <requiredProperty key="camel-scr-version">
             <defaultValue>${project.version}</defaultValue>
         </requiredProperty>
-        <requiredProperty key="slf4j-version">
-            <defaultValue>${slf4j-version}</defaultValue>
+        <requiredProperty key="jboss-fuse-version">
+            <defaultValue>${jboss-fuse-version}</defaultValue>
         </requiredProperty>
-        <requiredProperty key="log4j-version">
-            <defaultValue>${log4j-version}</defaultValue>
+        <requiredProperty key="camel-version">
+            <defaultValue>${camel-version}</defaultValue>
         </requiredProperty>
     </requiredProperties>
     <fileSets>

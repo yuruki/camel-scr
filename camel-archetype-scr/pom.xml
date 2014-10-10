@@ -13,13 +13,7 @@
     <packaging>maven-archetype</packaging>
 
     <name>Camel SCR archetype</name>
-    <url>http://github.com/yuruki/camel-scr</url>
-
-    <scm>
-        <connection>${my.scm.url}/${project.artifactId}.git</connection>
-        <developerConnection>${my.scm.url}/${project.artifactId}.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
+    <url>https://github.com/yuruki/camel-scr</url>
 
     <prerequisites>
         <maven>3.0.4</maven>
@@ -51,14 +45,14 @@
                     <include>**/archetype-metadata.xml</include>
                 </includes>
             </resource>
-            <resource>
+        </resources>
+
+        <testResources>
+            <testResource>
                 <directory>src/test/resources</directory>
                 <filtering>true</filtering>
-                <includes>
-                    <include>**/archetype.properties</include>
-                </includes>
-            </resource>
-        </resources>
+            </testResource>
+        </testResources>
 
         <pluginManagement>
             <plugins>

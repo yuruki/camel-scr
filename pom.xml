@@ -20,17 +20,14 @@
 		<developerConnection>${my.scm.url}/${project.artifactId}.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
-	
+
     <prerequisites>
         <maven>3.0.4</maven>
     </prerequisites>
 
 	<properties>
-		<camel-version>2.12.0.redhat-610379</camel-version>
-		<slf4j-version>1.6.6</slf4j-version>
-		<log4j-version>1.2.16</log4j-version>
-        <felix-framework-version>4.0.3.redhat-610379</felix-framework-version>
-        <felix-scr-annotations-version>1.9.6</felix-scr-annotations-version>
+        <jboss-fuse-version>6.1.0.redhat-379</jboss-fuse-version>
+        <camel-version>2.12.0.redhat-610379</camel-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
@@ -67,53 +64,17 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-core</artifactId>
-                <version>${camel-version}</version>
+                <!-- This gives us the versions of all Fuse components automatically -->
+                <groupId>org.jboss.fuse.bom</groupId>
+                <artifactId>jboss-fuse-parent</artifactId>
+                <version>${jboss-fuse-version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.apache.camel</groupId>
                 <artifactId>camel-core-osgi</artifactId>
                 <version>${camel-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>org.apache.felix.framework</artifactId>
-                <version>${felix-framework-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>org.apache.felix.scr.annotations</artifactId>
-                <version>${felix-scr-annotations-version}</version>
-            </dependency>
-
-            <!-- logging -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>${slf4j-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>${slf4j-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>${log4j-version}</version>
-            </dependency>
-
-            <!-- testing -->
-            <dependency>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-test</artifactId>
-                <version>${camel-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-lang</groupId>
-                <artifactId>commons-lang</artifactId>
-                <version>2.6</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
