@@ -7,22 +7,16 @@ This archetype can be used to create ready-to-run Camel SCR bundle projects. As 
 
 ### Generating a project
 
-First you have to install camel-scr artifact (https://github.com/yuruki/camel-scr):
+First you have to install camel-scr-runner and camel-archetype-scr:
 
     camel-scr
-    $ mvn install
-  
-Then we install camel-archetype-scr:
-
-    camel-archetype-scr
     $ mvn install
   
 Let's generate a project:
 
     your_git_repositories
     $ mvn archetype:generate -Dfilter=com.github.yuruki.camel.scr:
-  
-    [INFO] Scanning for projects...
+    
     [INFO]
     [INFO] Using the builder org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder with a thread count of 1
     [INFO]
@@ -38,7 +32,7 @@ Let's generate a project:
     [INFO] Generating project in Interactive mode
     [INFO] No archetype defined. Using maven-archetype-quickstart (org.apache.maven.archetypes:maven-archetype-quickstart:1.0)
     Choose archetype:
-    1: local -> com.github.yuruki.camel.scr:camel-archetype-scr (camel-archetype-scr)
+    1: local -> com.github.yuruki.camel.scr:camel-archetype-scr (The Service Component Runtime (SCR) utils for Camel)
     Choose a number or apply filter (format: [groupId:]artifactId, case sensitive contains): : 1
     Define value for property 'groupId': : example
     [INFO] Using property: groupId = example
@@ -47,8 +41,11 @@ Let's generate a project:
     Define value for property 'package':  example: :
     [INFO] Using property: archetypeArtifactId = camel-archetype-scr
     [INFO] Using property: archetypeGroupId = com.github.yuruki.camel.scr
-    Define value for property 'archetypeVersion': : 1.0-SNAPSHOT
+    Define value for property 'archetypeVersion': : 1.1.3-SNAPSHOT
+    [INFO] Using property: camel-scr-version = 1.1.3-SNAPSHOT
+    [INFO] Using property: camel-version = 2.12.0.redhat-610379
     Define value for property 'className': : CamelScrExample
+    [INFO] Using property: jboss-fuse-version = 6.1.0.redhat-379
     Confirm properties configuration:
     groupId: example
     groupId: example
@@ -57,34 +54,68 @@ Let's generate a project:
     package: example
     archetypeArtifactId: camel-archetype-scr
     archetypeGroupId: com.github.yuruki.camel.scr
-    archetypeVersion: 1.0-SNAPSHOT
+    archetypeVersion: 1.1.3-SNAPSHOT
+    camel-scr-version: 1.1.3-SNAPSHOT
+    camel-version: 2.12.0.redhat-610379
     className: CamelScrExample
+    jboss-fuse-version: 6.1.0.redhat-379
      Y: :
     [INFO] ----------------------------------------------------------------------------
-    [INFO] Using following parameters for creating project from Archetype: camel-archetype-scr:1.0-SNAPSHOT
+    [INFO] Using following parameters for creating project from Archetype: camel-archetype-scr:1.1.3-SNAPSHOT
+    [INFO] ----------------------------------------------------------------------------
+    [INFO] Parameter: groupId, Value: example
+    [INFO] Parameter: artifactId, Value: camel-scr-example
+    [INFO] Parameter: version, Value: 1.0-SNAPSHOT
+    Define value for property 'package':  example: :
+    [INFO] Using property: archetypeArtifactId = camel-archetype-scr
+    [INFO] Using property: archetypeGroupId = com.github.yuruki.camel.scr
+    Define value for property 'archetypeVersion': : 1.1.3-SNAPSHOT
+    [INFO] Using property: camel-scr-version = 1.1.3-SNAPSHOT
+    [INFO] Using property: camel-version = 2.12.0.redhat-610379
+    Define value for property 'className': : CamelScrExample
+    [INFO] Using property: jboss-fuse-version = 6.1.0.redhat-379
+    Confirm properties configuration:
+    groupId: example
+    groupId: example
+    artifactId: camel-scr-example
+    version: 1.0-SNAPSHOT
+    package: example
+    archetypeArtifactId: camel-archetype-scr
+    archetypeGroupId: com.github.yuruki.camel.scr
+    archetypeVersion: 1.1.3-SNAPSHOT
+    camel-scr-version: 1.1.3-SNAPSHOT
+    camel-version: 2.12.0.redhat-610379
+    className: CamelScrExample
+    jboss-fuse-version: 6.1.0.redhat-379
+     Y: :
+    [INFO] ----------------------------------------------------------------------------
+    [INFO] Using following parameters for creating project from Archetype: camel-archetype-scr:1.1.3-SNAPSHOT
     [INFO] ----------------------------------------------------------------------------
     [INFO] Parameter: groupId, Value: example
     [INFO] Parameter: artifactId, Value: camel-scr-example
     [INFO] Parameter: version, Value: 1.0-SNAPSHOT
     [INFO] Parameter: package, Value: example
     [INFO] Parameter: packageInPathFormat, Value: example
-    [INFO] Parameter: package, Value: example
-    [INFO] Parameter: version, Value: 1.0-SNAPSHOT
-    [INFO] Parameter: archetypeArtifactId, Value: camel-archetype-scr
+    [INFO] Parameter: archetypeVersion, Value: 1.1.3-SNAPSHOT
+    [INFO] Parameter: camel-scr-version, Value: 1.1.3-SNAPSHOT
     [INFO] Parameter: groupId, Value: example
+    [INFO] Parameter: archetypeArtifactId, Value: camel-archetype-scr
+    [INFO] Parameter: version, Value: 1.0-SNAPSHOT
     [INFO] Parameter: className, Value: CamelScrExample
-    [INFO] Parameter: archetypeVersion, Value: 1.0-SNAPSHOT
     [INFO] Parameter: archetypeGroupId, Value: com.github.yuruki.camel.scr
+    [INFO] Parameter: camel-version, Value: 2.12.0.redhat-610379
+    [INFO] Parameter: package, Value: example
+    [INFO] Parameter: jboss-fuse-version, Value: 6.1.0.redhat-379
     [INFO] Parameter: artifactId, Value: camel-scr-example
     [INFO] project created from Archetype in dir: c:\Repositories\Git\camel-scr-example
     [INFO] ------------------------------------------------------------------------
     [INFO] BUILD SUCCESS
     [INFO] ------------------------------------------------------------------------
-    [INFO] Total time: 03:52 min
-    [INFO] Finished at: 2014-10-09T12:25:26+02:00
+    [INFO] Total time: 48.734 s
+    [INFO] Finished at: 2014-10-10T14:37:12+02:00
     [INFO] Final Memory: 14M/240M
     [INFO] ------------------------------------------------------------------------
-    
+
 Build and install the bundle:
 
     your_git_repositories
@@ -128,6 +159,9 @@ Build and install the bundle:
      T E S T S
     -------------------------------------------------------
     Running example.CamelScrExampleTest
+    [                          main] CamelScrExampleTest            INFO  *******************************************************************
+    [                          main] CamelScrExampleTest            INFO  Test: testRoutes
+    [                          main] CamelScrExampleTest            INFO  *******************************************************************
     [                          main] CamelScrExample                DEBUG Added 12 override properties
     [                          main] CamelScrExample                DEBUG Configuring example.CamelScrExample
     [                          main] CamelScrExample                DEBUG Field COMPONENT_LABEL skipped: Property with key [unit.COMPONENT_LABEL] (and original key [COMPONENT_LABEL]) not found in properties from text: {{COMPONENT_LABEL}}
@@ -140,11 +174,11 @@ Build and install the bundle:
     [                          main] CamelScrExample                DEBUG Set field active with value true
     [                          main] CamelScrExample                DEBUG Configuring example.internal.CamelScrExampleRoute
     [                          main] CamelScrExample                DEBUG Field registry skipped: Property with key [unit.registry] (and original key [registry]) not found in properties from text: {{registry}}
+    [                          main] CamelScrExample                DEBUG Set field camelRouteId with value foo/timer-log
     [                          main] CamelScrExample                DEBUG Set field maximumRedeliveries with value 0
     [                          main] CamelScrExample                DEBUG Set field redeliveryDelay with value 5000
     [                          main] CamelScrExample                DEBUG Set field backOffMultiplier with value 2
     [                          main] CamelScrExample                DEBUG Set field maximumRedeliveryDelay with value 60000
-    [                          main] CamelScrExample                DEBUG Set field camelRouteId with value foo/timer-log
     [                          main] AdviceWithTasks                INFO  AdviceWith replace input from [{{from}}] --> [direct:start]
     [                          main] RouteDefinition                INFO  AdviceWith route after: Route(foo/timer-log)[[From[direct:start]] -> [onCompletion[[To[direct:processCompletion]]], RemoveHeaders[*], To[{{to}}]]]
     [                          main] DefaultCamelContext            INFO  Apache Camel 2.12.0.redhat-610379 (CamelContext: camel-scr-example) is starting
@@ -157,18 +191,19 @@ Build and install the bundle:
     [                          main] DefaultCamelContext            INFO  Route: foo/timer-log started and consuming from: Endpoint[direct://start]
     [                          main] DefaultCamelContext            INFO  Route: foo/timer-log.completion started and consuming from: Endpoint[direct://processCompletion]
     [                          main] DefaultCamelContext            INFO  Total 2 routes, of which 2 is started.
-    [                          main] DefaultCamelContext            INFO  Apache Camel 2.12.0.redhat-610379 (CamelContext: camel-scr-example) started in 0.374 seconds
+    [                          main] DefaultCamelContext            INFO  Apache Camel 2.12.0.redhat-610379 (CamelContext: camel-scr-example) started in 0.329 seconds
     [                          main] MockEndpoint                   INFO  Asserting: Endpoint[mock://log:foo] is satisfied
     [                          main] DefaultCamelContext            INFO  Apache Camel 2.12.0.redhat-610379 (CamelContext: camel-scr-example) is shutting down
     [                          main] DefaultShutdownStrategy        INFO  Starting to graceful shutdown 2 routes (timeout 300 seconds)
     [mple) thread #2 - ShutdownTask] DefaultShutdownStrategy        INFO  Waiting as there are still 1 inflight and pending exchanges to complete, timeout in 300 seconds.
     [mple) thread #1 - OnCompletion] completion                     INFO  Success: timer:foo?period=5000 -> log:foo?showHeaders=true
-    [mple) thread #2 - ShutdownTask] DefaultShutdownStrategy        INFO  Route: foo/timer-log.completion shutdown complete, was consuming from: Endpoint[direct://processCompletion]
+    [mple) thread #2 - ShutdownTask] DefaultShutdownStrategy        INFO  Route: foo/timer-log.completion shutdown complete, was consuming from: Endpoint[
+    direct://processCompletion]
     [mple) thread #2 - ShutdownTask] DefaultShutdownStrategy        INFO  Route: foo/timer-log shutdown complete, was consuming from: Endpoint[direct://start]
     [                          main] DefaultShutdownStrategy        INFO  Graceful shutdown of 2 routes completed in 1 seconds
-    [                          main] DefaultCamelContext            INFO  Apache Camel 2.12.0.redhat-610379 (CamelContext: camel-scr-example) uptime 1.423 seconds
-    [                          main] DefaultCamelContext            INFO  Apache Camel 2.12.0.redhat-610379 (CamelContext: camel-scr-example) is shutdown in 1.019 seconds
-    Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.926 sec - in example.CamelScrExampleTest
+    [                          main] DefaultCamelContext            INFO  Apache Camel 2.12.0.redhat-610379 (CamelContext: camel-scr-example) uptime 1.372 seconds
+    [                          main] DefaultCamelContext            INFO  Apache Camel 2.12.0.redhat-610379 (CamelContext: camel-scr-example) is shutdown in 1.020 seconds
+    Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.859 sec - in example.CamelScrExampleTest
     
     Results :
     
@@ -187,9 +222,9 @@ Build and install the bundle:
     [INFO] ------------------------------------------------------------------------
     [INFO] BUILD SUCCESS
     [INFO] ------------------------------------------------------------------------
-    [INFO] Total time: 5.913 s
-    [INFO] Finished at: 2014-10-09T12:30:29+02:00
-    [INFO] Final Memory: 24M/431M
+    [INFO] Total time: 5.663 s
+    [INFO] Finished at: 2014-10-10T14:39:55+02:00
+    [INFO] Final Memory: 22M/431M
     [INFO] ------------------------------------------------------------------------
 
 That's it. The example can now be deployed in JBoss Fuse.
