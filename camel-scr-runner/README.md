@@ -28,7 +28,7 @@ Then implement *getRouteBuilders()* which should return the Camel routes you wan
 
 That's all.
 
-Properties *camelContextId* and *active* control the CamelContext's name (defaults to "camel-runner-default") and whether it will be started or not (defaults to "false"), respectively. In addition to these you can add and use as many properties as you like. PropertiesComponent handled recursive properties and prefixing with fallback with no problem (see camel-archetype-scr generated example for more).
+Properties *camelContextId* and *active* control the CamelContext's name (defaults to "camel-runner-default") and whether it will be started or not (defaults to "false"), respectively. In addition to these you can add and use as many properties as you like. PropertiesComponent handles recursive properties and prefixing with fallback with no problem (see camel-archetype-scr generated example for more).
 
 *AbstractCamelRunner* will make these properties available to your RouteBuilders through Camel's PropertiesComponent AND it will also inject these values into your Service Component class' and RouteBuilder's fields when their names match. The fields can be declared with any visibility level, and many types are supported (String, int, boolean, URL, ...).
 
@@ -43,4 +43,6 @@ AbstractCamelRunner lifecycle in SCR:
 
 In unit tests we don't generally use *activate()* -> *deactivate()*, but *prepare()* -> *run()* -> *stop()* for a more fine-grained control. Also, this allows us to avoid possible SCR specific operations in tests.
 
-camel-archetype-scr coming soon...
+### Examples
+
+Camel SCR bundles can be generated with https://github.com/yuruki/camel-archetype-scr.
