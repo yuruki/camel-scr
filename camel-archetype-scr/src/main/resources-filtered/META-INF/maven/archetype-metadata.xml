@@ -4,13 +4,15 @@
                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <requiredProperties>
         <requiredProperty key="archetypeGroupId">
-            <defaultValue>com.github.yuruki.camel.scr</defaultValue>
+            <defaultValue>${project.groupId}</defaultValue>
         </requiredProperty>
         <requiredProperty key="archetypeArtifactId">
-            <defaultValue>camel-archetype-scr</defaultValue>
+            <defaultValue>${project.artifactId}</defaultValue>
+        </requiredProperty>
+        <requiredProperty key="archetypeVersion">
+            <defaultValue>${project.version}</defaultValue>
         </requiredProperty>
         <requiredProperty key="groupId"/>
-        <requiredProperty key="archetypeVersion"/>
         <requiredProperty key="className"/>
         <requiredProperty key="camel-scr-version">
             <defaultValue>${project.version}</defaultValue>
