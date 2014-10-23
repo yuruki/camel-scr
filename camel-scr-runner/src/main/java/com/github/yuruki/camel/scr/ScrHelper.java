@@ -31,7 +31,7 @@ public class ScrHelper {
     public static Map<String, String> getScrProperties(String xmlLocation, String componentName) throws Exception {
         Map<String, String> result = new HashMap<>();
         final Document dom = readXML(new File(xmlLocation));
-        final XPath xPath = XPathFactory.newInstance().newXPath();
+        final XPath xPath = XPathFactory.newInstance(XPathFactory.DEFAULT_OBJECT_MODEL_URI, "com.sun.org.apache.xpath.internal.jaxp.XPathFactoryImpl", null).newXPath();
         xPath.setNamespaceContext(new NamespaceContext() {
             @Override
             public String getNamespaceURI(String prefix) {
