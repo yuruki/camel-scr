@@ -43,6 +43,7 @@ public class ${className}Route extends RouteBuilder {
             .maximumRedeliveryDelay(maximumRedeliveryDelay));
 
         from("{{from}}")
+            .startupOrder(2)
             .routeId(camelRouteId)
             .onCompletion()
                 .to("direct:processCompletion")
@@ -51,6 +52,7 @@ public class ${className}Route extends RouteBuilder {
             .to("{{to}}");
 
         from("direct:processCompletion")
+            .startupOrder(1)
             .routeId(camelRouteId + ".completion")
             .choice()
                 .when(simple("${exception} == null"))
