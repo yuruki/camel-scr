@@ -20,6 +20,7 @@ import java.util.List;
         @Property(name = "active", value = "true"),
         @Property(name = "from", value = "timer:foo?period=5000"),
         @Property(name = "to", value = "log:foo?showHeaders=true"),
+        @Property(name = "summaryLogging", value = "false"),
         @Property(name = "messageOk", value = "Success: {{from}} -> {{to}}"),
         @Property(name = "messageError", value = "Failure: {{from}} -> {{to}}"),
         @Property(name = "maximumRedeliveries", value = "0"),
