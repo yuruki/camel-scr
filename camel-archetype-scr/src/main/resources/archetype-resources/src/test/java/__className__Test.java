@@ -91,7 +91,7 @@ public class ${className}Test {
         context.createProducerTemplate().sendBody("direct:start", "hello");
 
         // You can also send an external file
-        // template.sendBody(context.getClassResolver().loadResourceAsStream("testdata/in/input.xml"));
+        // context.createProducerTemplate.sendBody("direct:start", context.getClassResolver().loadResourceAsStream("testdata/in/input.xml"));
 
         // REST/HTTP services can be easily tested with RestAssured:
         // get(context.resolvePropertyPlaceholders("{{restUrl}}")).then().statusCode(204).body(isEmptyOrNullString());

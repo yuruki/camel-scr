@@ -70,6 +70,7 @@ This file was generated from ${archetypeGroupId}/${archetypeArtifactId}/${archet
                 <scope>import</scope>
             </dependency>
             <dependency>
+                <!-- camel-core-osgi doesn't seem to be included in the above bill of materials -->
                 <groupId>org.apache.camel</groupId>
                 <artifactId>camel-core-osgi</artifactId>
                 <version>${camel-version}</version>
@@ -202,7 +203,7 @@ This file was generated from ${archetypeGroupId}/${archetypeArtifactId}/${archet
                         <Private-Package>
                             ${groupId},
                             ${groupId}.*,
-                            com.github.yuruki.camel.scr
+                            ${archetypeGroupId}
                         </Private-Package>
                     </instructions>
                 </configuration>
