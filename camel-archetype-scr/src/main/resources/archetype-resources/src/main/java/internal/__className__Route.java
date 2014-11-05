@@ -39,6 +39,7 @@ public class ${className}Route extends RouteBuilder {
         // registry.put("test", "bean");
 
         errorHandler(defaultErrorHandler()
+            .retryAttemptedLogLevel(LoggingLevel.WARN)
             .maximumRedeliveries(maximumRedeliveries)
             .redeliveryDelay(redeliveryDelay)
             .backOffMultiplier(backOffMultiplier)
