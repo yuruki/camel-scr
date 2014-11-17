@@ -1,6 +1,8 @@
 camel-scr
 =========
 
+Note! Camel-scr is now part of Apache Camel (from version 2.15 on). This repository is no longer updated.
+
 Service Component Runtime (SCR) utils for Camel
 
 This project consists of:
